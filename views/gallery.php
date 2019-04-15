@@ -10,14 +10,14 @@ foreach ($files1 as $value) {
 
 include "../engine/resize.php";
 
-var_dump( $_FILES);
-var_dump( $_POST);
 
 if (isset($_POST["load"])) {
     $upload = $dir.$_FILES["photo"][name];
+    include "../engine/upload_checks.php";
     if (move_uploaded_file($_FILES["photo"]['tmp_name'], $upload)) {
         create_thumbnail($upload, $dirSmall.$_FILES["photo"][name], 150, 100);
         echo "Файл успешно загружен.\n";
+        header("Location: ?page=gallery");
     } else {
         echo "Загрузка не получилась.\n";
     }
