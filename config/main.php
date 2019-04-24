@@ -8,7 +8,7 @@ define("LAYOUTS_DIR", 'layout/');
 define('HOST', 'localhost');
 define('USER', 'root');
 define('PASS', '');
-define('DB', 'geek');
+define('DB', 'mygallery');
 
 //Тут же подключим основные функции нашего приложения, пока это render
 //Можете кстати подключить и в главном index.php если такая вложенность напрягает

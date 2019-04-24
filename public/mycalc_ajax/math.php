@@ -1,13 +1,30 @@
 <?php
 
+$contentType = isset($_SERVER["CONTENT_TYPE"]) ? trim($_SERVER["CONTENT_TYPE"]) : '';
 
-$operand1 = (int)$_POST['operand1'];
-$operand2 = (int)$_POST['operand2'];
-$operation = $_POST['operation'];
+if ($contentType === "application/json") {
+    //Receive the RAW post data.
+    $content = trim(file_get_contents("php://input"));
 
-$result = mathOperation($operand1, $operand2, $operation);
+    $decoded = json_decode($content, true);
 
-header("Location: calculator.php/?result=$result&oper1=$operand1&oper2=$operand2");
+
+    //If json_decode failed, the JSON is invalid.
+    if(! is_array($decoded)) {
+
+    } else {
+        // Send error back to user.
+    }
+}
+
+
+$operand1 = (int)$decoded['operand1'];
+$operand2 = (int)$decoded['operand2'];
+$operation = $decoded['operation'];
+$response['result'] = mathOperation($operand1, $operand2, $operation);
+echo json_encode($response);
+
+//header("Location: calculator.php/?result=$result&oper1=$operand1&oper2=$operand2");
 
 function sum($a, $b) {
     return $a+$b;
