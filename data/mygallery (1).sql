@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Апр 24 2019 г., 14:02
+-- Время создания: Май 05 2019 г., 00:46
 -- Версия сервера: 5.7.25
 -- Версия PHP: 7.1.22
 
@@ -21,6 +21,29 @@ SET time_zone = "+00:00";
 --
 -- База данных: `mygallery`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `cart`
+--
+
+CREATE TABLE `cart` (
+  `id` int(11) NOT NULL,
+  `id_session` text NOT NULL,
+  `id_goods` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Дамп данных таблицы `cart`
+--
+
+INSERT INTO `cart` (`id`, `id_session`, `id_goods`) VALUES
+(4, '5', '2'),
+(5, '5', '1'),
+(7, 'm384el77isb6cnp8c08l7ki45qol6fen', '2'),
+(8, 'm384el77isb6cnp8c08l7ki45qol6fen', '2'),
+(10, '0fq27vt74fqik4c1f76t7m37vt4bom14', '1');
 
 -- --------------------------------------------------------
 
@@ -88,6 +111,26 @@ INSERT INTO `news` (`id`, `category`, `prev`, `text`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Структура таблицы `orders`
+--
+
+CREATE TABLE `orders` (
+  `id` int(11) NOT NULL,
+  `phone` text NOT NULL,
+  `id_session` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Дамп данных таблицы `orders`
+--
+
+INSERT INTO `orders` (`id`, `phone`, `id_session`) VALUES
+(1, '12345678', '0fq27vt74fqik4c1f76t7m37vt4bom14'),
+(2, '12345678', '0fq27vt74fqik4c1f76t7m37vt4bom14');
+
+-- --------------------------------------------------------
+
+--
 -- Структура таблицы `pictures`
 --
 
@@ -139,9 +182,37 @@ INSERT INTO `product_feedback` (`id`, `name`, `text`, `product_id`) VALUES
 (9, 'Михаил', '2', 2),
 (10, 'Михаил', '3', 3);
 
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `users`
+--
+
+CREATE TABLE `users` (
+  `id` int(11) NOT NULL,
+  `login` text NOT NULL,
+  `pass` text NOT NULL,
+  `hash` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Дамп данных таблицы `users`
+--
+
+INSERT INTO `users` (`id`, `login`, `pass`, `hash`) VALUES
+(1, 'admin', '$2y$10$GAh95KWqFf1Fw4YyH/BCnuODYbJ1Mln78vDuOIwj7WQvChhR8QcX.', '8623857935ccdb7a06bf307.55315600'),
+(4, 'admin2', '$2y$10$0j/k427NnbfdaoWo4QMisuJU9oUeY9eWcCRsivY3/TG07cIQR0muK', '$2y$10$0j/k427NnbfdaoWo4QMisuJU9oUeY9eWcCRsivY3/TG07cIQR0muK'),
+(5, 'admin3', '$2y$10$5SO75gqFXXEKi588YhiBOOP/tlV.MO2AFlNni9uWWg/dD6NEiSL3C', '$2y$10$5SO75gqFXXEKi588YhiBOOP/tlV.MO2AFlNni9uWWg/dD6NEiSL3C');
+
 --
 -- Индексы сохранённых таблиц
 --
+
+--
+-- Индексы таблицы `cart`
+--
+ALTER TABLE `cart`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Индексы таблицы `category`
@@ -162,6 +233,12 @@ ALTER TABLE `news`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Индексы таблицы `orders`
+--
+ALTER TABLE `orders`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Индексы таблицы `pictures`
 --
 ALTER TABLE `pictures`
@@ -174,8 +251,20 @@ ALTER TABLE `product_feedback`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Индексы таблицы `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT для сохранённых таблиц
 --
+
+--
+-- AUTO_INCREMENT для таблицы `cart`
+--
+ALTER TABLE `cart`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT для таблицы `category`
@@ -196,6 +285,12 @@ ALTER TABLE `news`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
+-- AUTO_INCREMENT для таблицы `orders`
+--
+ALTER TABLE `orders`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT для таблицы `pictures`
 --
 ALTER TABLE `pictures`
@@ -206,6 +301,12 @@ ALTER TABLE `pictures`
 --
 ALTER TABLE `product_feedback`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
+--
+-- AUTO_INCREMENT для таблицы `users`
+--
+ALTER TABLE `users`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
