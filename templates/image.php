@@ -1,4 +1,5 @@
 <button class="action" id="likeButton" data-id="<?=$id?>">Like</button><br>
+
 <img src="/img/big/<?= $image?>" width="300"><br>
 Просмотров: <span id='like'><?= $likes?></span>
 <br>

@@ -7,7 +7,6 @@ $url_array = explode("/", $_SERVER['REQUEST_URI']);
 $page = "";
 $action = "";
 $id = "";
-
 if ($url_array[1] == "") {
     $page = "index";
     $id = "";

@@ -57,7 +57,7 @@ function getAllFeedbackGoods($id)
 }
 
 
-function doFeedbackActionImage($action, $id) {
+function doFeedbackActionImage($action, $id, &$params) {
     $params['textAction'] = "Добавить";
     $params['formAction'] = "add";
 
@@ -109,5 +109,4 @@ function doFeedbackActionImage($action, $id) {
     }
 
 
-    return $params;
 }

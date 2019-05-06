@@ -50,7 +50,7 @@ function getAllFeedback()
     return getAssocResult($sql);
 }
 
-function doFeedbackAction($action, $id) {
+function doFeedbackAction($action, $id, &$params) {
     $params['textAction'] = "Добавить";
     $params['formAction'] = "add";
 
@@ -96,6 +96,5 @@ function doFeedbackAction($action, $id) {
 
     $params['feedback'] = getAllFeedback();
 
-    return $params;
 }
 
